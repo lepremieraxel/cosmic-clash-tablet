@@ -65,42 +65,42 @@ public class PlayerTest : MonoBehaviour
             if (move == 1)
             {
                 this.transform.position = planetL1.transform.position;
-                draw.Draw(true, false);
+                
             }
             if (move == 2)
             {
                 this.transform.position = planetL2.transform.position;
-                draw.Draw(true, false);
+                
             }
             if (move == 3)
             {
                 this.transform.position = planetL3.transform.position;
-                draw.Draw(true, false);
+                
             }
             if (move == 4)
             {
                 this.transform.position = planetL4.transform.position;
-                draw.Draw(true, false);
+                
             }
             if (move == 5)
             {
                 this.transform.position = planetL5.transform.position;
-                draw.Draw(true, false);
+                
             }
             if (move == 6)
             {
                 this.transform.position = planetL6.transform.position;
-                draw.Draw(true, false);
+                
             }
             if (move == 7)
             {
                 this.transform.position = planetL7.transform.position;
-                draw.Draw(true, false);
+                
             }
             if (move == 8)
             {
                 this.transform.position = planetL8.transform.position;
-                draw.Draw(true, false);
+                
             }
 
         }
@@ -109,43 +109,43 @@ public class PlayerTest : MonoBehaviour
             if (move == 1)
             {
                 this.transform.position = planetR1.transform.position;
-                draw.Draw(true, false);
+                
             }
             if (move == 2)
             {
                 this.transform.position = planetR2.transform.position;
-                draw.Draw(true, false);
+                
             }
             if (move == 3)
             {
                 this.transform.position = planetR3.transform.position;
-                draw.Draw(true, false);
+                
 
             }
             if (move == 4)
             {
                 this.transform.position = planetR4.transform.position;
-                draw.Draw(true, false);
+                
             }
             if (move == 5)
             {
                 this.transform.position = planetR5.transform.position;
-                draw.Draw(true, false);
+               
             }
             if (move == 6)
             {
                 this.transform.position = planetR6.transform.position;
-                draw.Draw(true, false);
+               
             }
             if (move == 7)
             {
                 this.transform.position = planetR7.transform.position;
-                draw.Draw(true, false);
+               
             }
             if (move == 8)
             {
                 this.transform.position = planetR8.transform.position;
-                draw.Draw(true, false);
+               
             }
         }
             if (myWay == "M")
@@ -153,28 +153,28 @@ public class PlayerTest : MonoBehaviour
             if (move == 1)
             {
                 this.transform.position = planetM1.transform.position;
-                draw.Draw(true, false);
+               
             }
             if (move == 2)
             {
                 this.transform.position = planetM2.transform.position;
-                draw.Draw(true, false);
+                
             }
             if (move == 3)
             {
                 this.transform.position = planetM3.transform.position;
-                draw.Draw(true, false);
+                
 
             }
             if (move == 4)
             {
                 this.transform.position = planetM4.transform.position;
-                draw.Draw(true, false);
+                
             }
             if (move == 5)
             {
                 this.transform.position = planetM5.transform.position;
-                draw.Draw(true, false);
+                
             }
             if (move >= 6)
             {
@@ -194,9 +194,10 @@ public class PlayerTest : MonoBehaviour
         currentD = Random.Range(1, 5);
         Debug.Log(currentD);
         move += currentD;
-        if(this.transform.position == planetChat.transform.position)
+        if(move>= 9 ||(myWay == "M"&& move >= 6))
         {
             draw.Draw(false, true);
+            Debug.Log("drawSuperPouvoir");
         }
         else
         {

@@ -18,7 +18,7 @@ public class PreparationShipManager : MonoBehaviour
     {
         if (currentIron >= 1|| currentShield >= 1 || currentGun >= 1)
         {
-            Debug.Log("ok");
+            
             //bool NeedCraft = true; //pour dire au jeu qu'on est obligé de mettre nos ressources
             //ouvrir grille de création de vaisseau
         }
@@ -26,7 +26,7 @@ public class PreparationShipManager : MonoBehaviour
     public void AddRessource(int iron, int shield, int gun)
     {
         currentGun += gun;
-        Debug.Log("test");
+       
         currentIron += iron;
 
         currentShield += shield;
