@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerTest : MonoBehaviour
 {
-    public int move;
-    public int currentD;
+    private int move;
+    private int currentD;
 
-    public string myWay;
+    private string myWay;
 
 
-
+    private bool myWayIsL = false;
     public Transform planetL1;
     public Transform planetL2;
     public Transform planetL3;
@@ -22,6 +22,8 @@ public class PlayerTest : MonoBehaviour
 
     public Transform planetChat;
 
+
+    private bool myWayIsR = false;
     public Transform planetR1;
     public Transform planetR2;
     public Transform planetR3;
@@ -31,35 +33,64 @@ public class PlayerTest : MonoBehaviour
     public Transform planetR7;
     public Transform planetR8;
 
+    private bool myWayIsM = false;
     public Transform planetM1;
     public Transform planetM2;
     public Transform planetM3;
     public Transform planetM4;
     public Transform planetM5;
-    // Update is called once per frame
-    public Deck draw;
+    
+    private Deck draw;
+
+    public GameObject canvaDebut;
+    public GameObject canvaD4;
+    public GameObject canvaCard;
+
     private void Awake()
     {
         draw = FindObjectOfType<Deck>();
     }
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        canvaDebut.SetActive(true);
+        canvaD4.SetActive(false);
+        canvaCard.SetActive(false);
+    }
+    public void ReceiveMessage(string message)
+    {
+        if (message == "L")
         {
+            canvaDebut.SetActive(false);
+            myWay = "L";
+            canvaD4.SetActive(true);
+        }
+        if (message == "M")
+        {
+            canvaDebut.SetActive(false);
+            myWay = "M";
+            canvaD4.SetActive(true);
+        }
+        if (message == "R")
+        {
+            canvaDebut.SetActive(false);
+            myWay = "R";
+            canvaD4.SetActive(true);
+        }
+        if(message == "D4")
+        {
+            canvaCard.SetActive(true);
+            canvaD4.SetActive(false);
             D4();
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (message == "Ok")
         {
-            myWay = "L";
+            canvaCard.SetActive(false);
+            canvaD4.SetActive(true);
         }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            myWay = "R";
-        }
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            myWay = "M";
-        }
+
+    }
+    void Update()
+    {
         if (myWay == "L")
         {
             if (move == 1)
@@ -197,13 +228,13 @@ public class PlayerTest : MonoBehaviour
         if(move>= 9 ||(myWay == "M"&& move >= 6))
         {
             draw.Draw(false, true);
-            Debug.Log("drawSuperPouvoir");
         }
         else
         {
             draw.Draw(true, false);
         }
     }
+
 
     //public void D6() {currentD = Random.Range(1, 7);Debug.Log(currentD);}
 
