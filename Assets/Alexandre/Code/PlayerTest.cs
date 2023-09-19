@@ -42,9 +42,9 @@ public class PlayerTest : MonoBehaviour
     
     private Deck draw;
 
-    public GameObject canvaDebut;
-    public GameObject canvaD4;
-    public GameObject canvaCard;
+    public GameObject buttonsDirection;
+    public GameObject lancerLeDé;
+    public GameObject cartePiochée;
 
     private void Awake()
     {
@@ -52,40 +52,40 @@ public class PlayerTest : MonoBehaviour
     }
     private void Start()
     {
-        canvaDebut.SetActive(true);
-        canvaD4.SetActive(false);
-        canvaCard.SetActive(false);
+        buttonsDirection.SetActive(true);
+        lancerLeDé.SetActive(false);
+        cartePiochée.SetActive(false);
     }
     public void ReceiveMessage(string message)
     {
         if (message == "L")
         {
-            canvaDebut.SetActive(false);
+            buttonsDirection.SetActive(false);
             myWay = "L";
-            canvaD4.SetActive(true);
+            lancerLeDé.SetActive(true);
         }
         if (message == "M")
         {
-            canvaDebut.SetActive(false);
+            buttonsDirection.SetActive(false);
             myWay = "M";
-            canvaD4.SetActive(true);
+            lancerLeDé.SetActive(true);
         }
         if (message == "R")
         {
-            canvaDebut.SetActive(false);
+            buttonsDirection.SetActive(false);
             myWay = "R";
-            canvaD4.SetActive(true);
+            lancerLeDé.SetActive(true);
         }
         if(message == "D4")
         {
-            canvaCard.SetActive(true);
-            canvaD4.SetActive(false);
+            cartePiochée.SetActive(true);
+            lancerLeDé.SetActive(false);
             D4();
         }
         if (message == "Ok")
         {
-            canvaCard.SetActive(false);
-            canvaD4.SetActive(true);
+            cartePiochée.SetActive(false);
+            lancerLeDé.SetActive(true);
         }
 
     }
