@@ -4,23 +4,31 @@ using UnityEngine;
 
 public class PreparationShipManager : MonoBehaviour
 {
-    [SerializeField] private int currentIron;
-    [SerializeField] private int currentShield;
-    [SerializeField] private int currentGun;
+    public int currentIron;
+    public int currentShield;
+    public int currentGun;
+    public int currentCore;
 
+    public bool needCraft;
     private void Awake()
     {
-        currentIron = 0;
-        currentShield = 0;
-        currentGun = 0;
+        currentIron = 3;
+        currentShield = 1;
+        currentGun = 1;
+        currentCore = 1;
     }
     void Update()
     {
-        if (currentIron >= 1|| currentShield >= 1 || currentGun >= 1)
+        if (currentIron >= 1|| currentShield >= 1 || currentGun >= 1||currentCore == 1)
         {
             
-            //bool NeedCraft = true; //pour dire au jeu qu'on est obligé de mettre nos ressources
+            needCraft = true; 
+            //pour dire au jeu qu'on est obligé de mettre nos ressources
             //ouvrir grille de création de vaisseau
+        }
+        else if(needCraft == false)
+        {
+
         }
     }
     public void AddRessource(int iron, int shield, int gun)
