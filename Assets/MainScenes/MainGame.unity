@@ -662,6 +662,8 @@ MonoBehaviour:
   currentIron: 0
   currentShield: 0
   currentGun: 0
+  currentCore: 0
+  needCraft: 0
 --- !u!114 &174582357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3593,7 +3595,7 @@ GameObject:
   - component: {fileID: 1274799542}
   - component: {fileID: 1274799541}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: ShipCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -6,17 +6,23 @@ public class Cell : MonoBehaviour
 {
     public bool iCanIronAndGun;
     Grid myGrid;
+    PreparationShipManager currentIronBloc;
+    PreparationShipManager currentShieldBloc;
+    PreparationShipManager currentGunBloc;
+    PreparationShipManager currentCoreBloc;
+
     private void Update()
     {
-        if (this.gameObject.tag == "IronCube")
-        {
 
-        }
     }
 
     private void Start()
     {
         myGrid = GameObject.Find("Grid").GetComponent<Grid>();
+        currentIronBloc= GameObject.Find("DogManager").GetComponent<PreparationShipManager>();
+        currentShieldBloc = GameObject.Find("DogManager").GetComponent<PreparationShipManager>();
+        currentGunBloc = GameObject.Find("DogManager").GetComponent<PreparationShipManager>();
+        currentCoreBloc = GameObject.Find("DogManager").GetComponent<PreparationShipManager>();
     }
     private void OnMouseOver()
     {
@@ -49,13 +55,32 @@ public class Cell : MonoBehaviour
         {
             if (iCanIronAndGun == true)
             {
-                PlaceRessource();
+                if (myGrid.newRessourcePrefab.name == "IronCube" && currentIronBloc.currentIron >= 1)
+                {
+                    PlaceRessource();
+                    currentIronBloc.currentIron = currentIronBloc.currentIron - 1;
+                }
+                if (myGrid.newRessourcePrefab.name == "GunCube" && currentGunBloc.currentGun >= 1)
+                {
+                    PlaceRessource();
+                    currentGunBloc.currentGun = currentGunBloc.currentGun - 1;
+                }
+
             }
             
         }
         else
         {
-            PlaceRessource();
+            if (myGrid.newRessourcePrefab.name == "ShieldCube" && currentShieldBloc.currentShield >= 1)
+            {
+                PlaceRessource();
+                currentShieldBloc.currentShield = currentShieldBloc.currentShield - 1;
+            }
+            if (myGrid.newRessourcePrefab.name == "CoreCube" && currentCoreBloc.currentCore == 1)
+            {
+                PlaceRessource();
+                currentCoreBloc.currentCore = currentCoreBloc.currentCore - 1;
+            }
         }
         
     }
