@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Deck : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Deck : MonoBehaviour
     private bool drawRessourceCard;
     private int myDraw;
     [SerializeField] private string description;
+    [SerializeField] private string title;
+    public Text titleText, descriptionText;
 
     PreparationShipManager myRessources;
     private void Awake()
@@ -19,168 +22,82 @@ public class Deck : MonoBehaviour
         if (drawRessourceCard == true)
         {
             
-            myDraw = 1; //Random.Range(1,33);
-            if (myDraw == 1)
+            myDraw = Random.Range(1,101);
+            if (myDraw >= 1 && myDraw < 26)
             {
-                description = "Snoop Dog";
-                myRessources.AddRessource(0, 1, 1);
-                
+                if(myDraw >= 1 && myDraw < 13)
+                {
+                    title = "Débris spatial";
+                }
+                if (myDraw >= 13 && myDraw < 26)
+                {
+                    title = "Conserve vide";
+                }
+                description = "+ 1 fer";
+                myRessources.AddRessource(1, 0, 0);
             }
-            if (myDraw == 2)
+            if (myDraw >= 26 && myDraw < 41)
             {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
+                if (myDraw >= 26 && myDraw < 32)
+                {
+                    title = "Astéroïde riche en fer";
+                }
+                if (myDraw >= 32 && myDraw < 41)
+                {
+                    title = "Planète minière";
+                }
+                description = "+ 2 fers";
+                myRessources.AddRessource(2, 0, 0);
             }
-            if (myDraw == 3)
+            if (myDraw >= 41 && myDraw < 56)
             {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
+                if (myDraw >= 41 && myDraw < 48)
+                {
+                    title = "Débris de fusée";
+                }
+                if (myDraw >= 48 && myDraw < 56)
+                {
+                    title = "Marchand ambulant";
+                }
+                description = "+ 1 fer et 1 bouclier";
+                myRessources.AddRessource(1, 1, 0);
             }
-            if (myDraw == 4)
+            if (myDraw >= 56 && myDraw < 81)
             {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
+                if (myDraw >= 56 && myDraw < 67)
+                {
+                    title = "Sac de croquettes";
+                }
+                if (myDraw >= 67 && myDraw < 81)
+                {
+                    title = "Morceaux de pierre";
+                }
+                description = "+ 1 bouclier";
+                myRessources.AddRessource(0, 1, 0);
             }
-            if (myDraw == 5)
+            if (myDraw >= 81 && myDraw < 96)
             {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
+                if (myDraw >= 81 && myDraw < 88)
+                {
+                    title = "Champs d'astéroïdes";
+                }
+                if (myDraw >= 88 && myDraw < 96)
+                {
+                    title = "Palette de sac de croquettes";
+                }
+                description = "+ 2 boucliers";
+                myRessources.AddRessource(0, 2, 0);
             }
-            if (myDraw == 6)
+            if (myDraw >= 96 && myDraw < 101)
             {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
+                title = "Canon laser";
+                description = "+ 1 arme";
+                myRessources.AddRessource(0, 0, 1);
             }
-            if (myDraw == 7)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 8)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 9)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 10)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 11)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 12)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 13)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 14)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 15)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 16)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 17)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 18)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 19)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 20)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 21)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 22)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 23)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 24)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 25)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 26)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 27)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 28)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 29)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 30)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 31)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
-            if (myDraw == 32)
-            {
-                description = " ";
-                myRessources.AddRessource(0, 0, 0);
-            }
+            descriptionText.text = description;
+            titleText.text = title;
+            Debug.Log(title);
+            Debug.Log(description);
             drawRessourceCard = false;
         }
         if (drawPowerCard == true)
@@ -226,6 +143,5 @@ public class Deck : MonoBehaviour
     {
         drawPowerCard = powerCard;
         drawRessourceCard = ressourceCard;
-        
     }
 }
