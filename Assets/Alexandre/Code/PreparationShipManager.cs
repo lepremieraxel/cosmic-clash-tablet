@@ -31,4 +31,5 @@ public class PreparationShipManager : MonoBehaviour
 
         currentShield += shield;
     }
+    
 }
