@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerTest : MonoBehaviour
 {
@@ -45,6 +46,7 @@ public class PlayerTest : MonoBehaviour
     public GameObject buttonsDirection;
     public GameObject lancerLeDé;
     public GameObject cartePiochée;
+    public Text textD;
 
     private void Awake()
     {
@@ -233,6 +235,7 @@ public class PlayerTest : MonoBehaviour
         {
             draw.Draw(true, false);
         }
+        textD.text = currentD.ToString();
     }
 
 

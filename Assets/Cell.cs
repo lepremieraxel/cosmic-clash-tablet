@@ -19,7 +19,7 @@ public class Cell : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        GameObject go = Instantiate(myGrid.ironPrefab, this.transform.position, Quaternion.identity);
+        GameObject go = Instantiate(myGrid.newRessourcePrefab, this.transform.position, Quaternion.identity);
         go.name = "Ressources" + gameObject.name;
     }
 
