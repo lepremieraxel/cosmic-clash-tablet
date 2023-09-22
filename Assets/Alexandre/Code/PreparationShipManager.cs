@@ -17,20 +17,6 @@ public class PreparationShipManager : MonoBehaviour
         currentGun = 1;
         currentCore = 1;
     }
-    void Update()
-    {
-        if (currentIron >= 1|| currentShield >= 1 || currentGun >= 1||currentCore == 1)
-        {
-            
-            needCraft = true; 
-            //pour dire au jeu qu'on est obligé de mettre nos ressources
-            //ouvrir grille de création de vaisseau
-        }
-        else if(needCraft == false)
-        {
-
-        }
-    }
     public void AddRessource(int iron, int shield, int gun)
     {
         currentGun += gun;

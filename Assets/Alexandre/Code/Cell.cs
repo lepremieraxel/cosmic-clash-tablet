@@ -18,15 +18,19 @@ public class Cell : MonoBehaviour
 
     private void Start()
     {
-        myGrid = GameObject.Find("Grid").GetComponent<Grid>();
-        currentIronBloc= GameObject.Find("DogManager").GetComponent<PreparationShipManager>();
-        currentShieldBloc = GameObject.Find("DogManager").GetComponent<PreparationShipManager>();
-        currentGunBloc = GameObject.Find("DogManager").GetComponent<PreparationShipManager>();
-        currentCoreBloc = GameObject.Find("DogManager").GetComponent<PreparationShipManager>();
+        myGrid = GameObject.Find("DogGrid").GetComponent<Grid>();
+        currentIronBloc= GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
+        currentShieldBloc = GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
+        currentGunBloc = GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
+        currentCoreBloc = GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
     }
     private void OnMouseOver()
     {
-        if (myGrid.newRessourcePrefab.name == "IronCube" || myGrid.newRessourcePrefab.name == "GunCube")
+        if ((myGrid.newRessourcePrefab.name == "IronCube" && currentIronBloc.currentIron == 0)||(myGrid.newRessourcePrefab.name == "GunCube" && currentGunBloc.currentGun == 0) || (myGrid.newRessourcePrefab.name == "ShieldCube" && currentShieldBloc.currentShield == 0) || (myGrid.newRessourcePrefab.name == "CoreCube" && currentCoreBloc.currentCore == 0))
+        {
+            this.GetComponent<Renderer>().material.color = Color.gray;
+        }
+        else if (myGrid.newRessourcePrefab.name == "IronCube" || myGrid.newRessourcePrefab.name == "GunCube")
         {
             if(iCanIronAndGun == true)
             {
@@ -65,9 +69,7 @@ public class Cell : MonoBehaviour
                     PlaceRessource();
                     currentGunBloc.currentGun = currentGunBloc.currentGun - 1;
                 }
-
             }
-            
         }
         else
         {
