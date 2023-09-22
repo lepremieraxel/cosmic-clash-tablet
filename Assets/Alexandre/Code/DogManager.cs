@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTest : MonoBehaviour
+public class DogManager : MonoBehaviour
 {
-    private int move;
-    private int currentD;
+    public bool dogTurn = true;
+    public int move;
 
-    private string myWay;
+
+    public string dogWay;
 
 
     private bool myWayIsL = false;
@@ -40,58 +41,12 @@ public class PlayerTest : MonoBehaviour
     public Transform planetM4;
     public Transform planetM5;
     
-    private Deck draw;
+ 
 
-    public GameObject canvaDebut;
-    public GameObject canvaD4;
-    public GameObject canvaCard;
-
-    private void Awake()
-    {
-        draw = FindObjectOfType<Deck>();
-    }
-    private void Start()
-    {
-        canvaDebut.SetActive(true);
-        canvaD4.SetActive(false);
-        canvaCard.SetActive(false);
-    }
-    public void ReceiveMessage(string message)
-    {
-        if (message == "L")
-        {
-            canvaDebut.SetActive(false);
-            myWay = "L";
-            canvaD4.SetActive(true);
-        }
-        if (message == "M")
-        {
-            canvaDebut.SetActive(false);
-            myWay = "M";
-            canvaD4.SetActive(true);
-        }
-        if (message == "R")
-        {
-            canvaDebut.SetActive(false);
-            myWay = "R";
-            canvaD4.SetActive(true);
-        }
-        if(message == "D4")
-        {
-            canvaCard.SetActive(true);
-            canvaD4.SetActive(false);
-            D4();
-        }
-        if (message == "Ok")
-        {
-            canvaCard.SetActive(false);
-            canvaD4.SetActive(true);
-        }
-
-    }
+    
     void Update()
     {
-        if (myWay == "L")
+        if (dogWay == "L")
         {
             if (move == 1)
             {
@@ -135,7 +90,7 @@ public class PlayerTest : MonoBehaviour
             }
 
         }
-        if (myWay == "R")
+        if (dogWay == "R")
         {
             if (move == 1)
             {
@@ -179,7 +134,7 @@ public class PlayerTest : MonoBehaviour
                
             }
         }
-            if (myWay == "M")
+            if (dogWay == "M")
             {
             if (move == 1)
             {
@@ -220,20 +175,7 @@ public class PlayerTest : MonoBehaviour
         }
 
     }
-    public void D4()
-    {
-        currentD = Random.Range(1, 5);
-        Debug.Log(currentD);
-        move += currentD;
-        if(move>= 9 ||(myWay == "M"&& move >= 6))
-        {
-            draw.Draw(false, true);
-        }
-        else
-        {
-            draw.Draw(true, false);
-        }
-    }
+
 
 
     //public void D6() {currentD = Random.Range(1, 7);Debug.Log(currentD);}
