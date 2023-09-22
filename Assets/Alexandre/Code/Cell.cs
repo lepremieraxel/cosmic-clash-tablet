@@ -19,10 +19,10 @@ public class Cell : MonoBehaviour
     private void Start()
     {
         myGrid = GameObject.Find("DogGrid").GetComponent<Grid>();
-        currentIronBloc= GameObject.Find("DogManager").GetComponent<PreparationShipManager>();
-        currentShieldBloc = GameObject.Find("DogManager").GetComponent<PreparationShipManager>();
-        currentGunBloc = GameObject.Find("DogManager").GetComponent<PreparationShipManager>();
-        currentCoreBloc = GameObject.Find("DogManager").GetComponent<PreparationShipManager>();
+        currentIronBloc= GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
+        currentShieldBloc = GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
+        currentGunBloc = GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
+        currentCoreBloc = GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
     }
     private void OnMouseOver()
     {
