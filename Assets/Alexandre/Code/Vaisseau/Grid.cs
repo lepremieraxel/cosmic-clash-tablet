@@ -6,14 +6,15 @@ public class Grid : MonoBehaviour
 {
     public GameObject newRessourcePrefab;
 
-    public GameObject gridCellPrefab;
+    //public GameObject gridCellPrefab;
 
 
 
     void Start()
     {
-        
-       for(int i = 1; i < 7; i++)
+
+
+       /*for(int i = 1; i < 7; i++)
         {
                    for (int j = 1; j < 7; j++)
             {
@@ -22,7 +23,7 @@ public class Grid : MonoBehaviour
                 go.name = i + "-" + j;
                 go.name = i + "-" + j;
             }
-        }
+        }*/
     }
 
     public void ChangeRessources(GameObject newRessource)

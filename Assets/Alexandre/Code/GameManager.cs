@@ -10,10 +10,8 @@ public class GameManager : MonoBehaviour
     PreparationShipManager currentGunBloc;
     PreparationShipManager currentCoreBloc;
     public static bool dogTurn = true;
-    public GameObject canvaDebut;
-    public GameObject canvaD4;
-    public GameObject canvaCard;
-    public GameObject canvaShipManager;
+
+    CanvasManager canvasManager;
 
    
     DogManager dogWay;
@@ -24,29 +22,32 @@ public class GameManager : MonoBehaviour
     private int currentD;
     private Deck draw;
 
-   
+    public static int maxCatGun;
+    public static int maxDogGun;
+    private int maxAttack;
+
 
     private int turn;
     
 
     private void Awake()
     {
-        canvaDebut.SetActive(true);
-        canvaD4.SetActive(false);
-        canvaCard.SetActive(false);
-        canvaShipManager.SetActive(false);
+        
 
-        draw = GameObject.Find("GameManager").GetComponent<Deck>();
+        draw = this.GetComponent<Deck>();//remove si on utilise plus le Deck
         dogWay = GameObject.Find("DogManager").GetComponent<DogManager>();
         dogMove = GameObject.Find("DogManager").GetComponent<DogManager>();
         catWay = GameObject.Find("CatManager").GetComponent<CatManager>();
         catMove = GameObject.Find("CatManager").GetComponent<CatManager>();
 
-        cameraManager = GameObject.Find("GameManager").GetComponent<CameraManager>();
-        currentIronBloc = GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
-        currentShieldBloc = GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
-        currentGunBloc = GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
-        currentCoreBloc = GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
+        canvasManager = this.GetComponent<CanvasManager>();
+        cameraManager = this.GetComponent<CameraManager>();
+        currentIronBloc = this.GetComponent<PreparationShipManager>();
+        currentShieldBloc = this.GetComponent<PreparationShipManager>();
+        currentGunBloc = this.GetComponent<PreparationShipManager>();
+        currentCoreBloc = this.GetComponent<PreparationShipManager>();
+
+        canvasManager.SwitchCanvas("canvasDebut");
     }
     // Update is called once per frame
 
@@ -56,64 +57,62 @@ public class GameManager : MonoBehaviour
         {
             if (message == "L")
             {
-                canvaDebut.SetActive(false);
                 dogWay.dogWay = "L";
-                canvaD4.SetActive(true);
+                canvasManager.SwitchCanvas("canvasD4");
             }
             if (message == "M")
             {
-                canvaDebut.SetActive(false);
+                
                 dogWay.dogWay = "M";
-                canvaD4.SetActive(true);
+                canvasManager.SwitchCanvas("canvasD4");
             }
             if (message == "R")
             {
-                canvaDebut.SetActive(false);
+                
                 dogWay.dogWay = "R";
-                canvaD4.SetActive(true);
+                canvasManager.SwitchCanvas("canvasD4");
             }
         }
         else
         {
             if (message == "L")
             {
-                canvaDebut.SetActive(false);
+                
                 catWay.catWay = "R";
-                canvaD4.SetActive(true);
+                canvasManager.SwitchCanvas("canvasD4");
             }
             if (message == "M")
             {
-                canvaDebut.SetActive(false);
+                
                 catWay.catWay = "M";
-                canvaD4.SetActive(true);
+                canvasManager.SwitchCanvas("canvasD4");
             }
             if (message == "R")
             {
-                canvaDebut.SetActive(false);
+                
                 catWay.catWay = "L";
-                canvaD4.SetActive(true);
+                canvasManager.SwitchCanvas("canvasD4");
             }
         }
         
 
         if (message == "D4")
         {
-            canvaCard.SetActive(true);
-            canvaD4.SetActive(false);
+            canvasManager.SwitchCanvas("canvasCard");
             D4();
         }
         if (message == "Ok")
         {
-            canvaCard.SetActive(false);
+            
 
             if ((currentIronBloc.currentIron > 0 || currentGunBloc.currentGun > 0 || currentShieldBloc.currentShield > 0) && dogTurn == true)
             {
-                canvaShipManager.SetActive(true);
+                canvasManager.SwitchCanvas("canvasShipManager");
                 cameraManager.SwitchCam("DogShipCam");
             }
             else if ((currentIronBloc.currentIron > 0 || currentGunBloc.currentGun > 0 || currentShieldBloc.currentShield > 0) && dogTurn == false)
             {
-                canvaShipManager.SetActive(true);
+                canvasManager.SwitchCanvas("canvasShipManager");
                 cameraManager.SwitchCam("CatShipCam");
             }
             else
@@ -124,12 +123,12 @@ public class GameManager : MonoBehaviour
         }
         if (message == "FinDeTour")
         {
-            canvaShipManager.SetActive(false);
+        
 
             Debug.Log("fin du tour" + " - " + dogTurn);
             if (turn < 1)
             {
-                canvaDebut.SetActive(true);
+                canvasManager.SwitchCanvas("canvasDebut");
                 currentIronBloc.currentIron = 3;
                     currentGunBloc.currentGun = 1;
                     currentShieldBloc.currentShield = 1;
@@ -137,7 +136,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                canvaD4.SetActive(true);
+                canvasManager.SwitchCanvas("canvasD4");
             }
          
 
@@ -152,7 +151,11 @@ public class GameManager : MonoBehaviour
                 dogTurn = true;
                 cameraManager.SwitchCam("DogTurnCam");
             }
-            Debug.Log("fin du tour" + " - " + dogTurn);
+            
+        }
+        if (message == "Fire")
+        {
+            D6();
         }
         void D4()
         {
@@ -163,7 +166,8 @@ public class GameManager : MonoBehaviour
                 dogMove.move += currentD;
                 if (dogMove.move >= 9 || (dogWay.dogWay == "M" && dogMove.move >= 6))
                 {
-                    draw.Draw(false, true);//(false, true) pour pouvoir et (
+                    draw.Draw(false, true);
+                    StartBattle("Dog");
                 }
                 else
                 {
@@ -176,15 +180,48 @@ public class GameManager : MonoBehaviour
                 if (catMove.move >= 9 || (catWay.catWay == "M" && catMove.move >= 6))
                 {
                     draw.Draw(false, true);
+                    StartBattle("Cat");
                 }
                 else
                 {
                     draw.Draw(true, false);
+
                 }
             }
               
            
 
+        }
+        void StartBattle(string Attacker)
+        {
+            if (Attacker == "Cat")
+            {
+                cameraManager.SwitchCam("DogShipCam");
+                maxAttack = maxCatGun; //nb de tire= total de gun
+                canvasManager.SwitchCanvas("canvasFire");
+            }
+            else if (Attacker == "Dog")
+            {
+                cameraManager.SwitchCam("CatShipCam");
+                maxAttack = maxDogGun;
+                canvasManager.SwitchCanvas("canvasFire");
+
+            }
+
+        }
+
+        void D6()
+        {
+            currentD = Random.Range(1, 7);
+            Debug.Log(currentD);
+            Choose(currentD);
+        }
+        void Choose(int nb)
+        {
+            if(nb == 1)
+            {
+
+            }
         }
     }
 }
