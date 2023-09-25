@@ -1,0 +1,3 @@
+id;title;description;function
+1;Débris Spatial;+ 1 fer;AddRessource(1,0,0)
+2;Test;+ 2 fers;AddRessource(2,0,0)

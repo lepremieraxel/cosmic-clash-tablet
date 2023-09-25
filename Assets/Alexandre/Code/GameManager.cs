@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,13 +15,15 @@ public class GameManager : MonoBehaviour
     public GameObject canvaD4;
     public GameObject canvaCard;
     public GameObject canvaShipManager;
+    public Text titleText, descriptionText;
 
-   
+
     DogManager dogWay;
     DogManager dogMove;
     [Header("Character management")]
     [SerializeField] CatManager catWay;
     CatManager catMove;
+    DeckReader deckReader;
     private int currentD;
     private Deck draw;
 
@@ -35,6 +38,8 @@ public class GameManager : MonoBehaviour
         canvaD4.SetActive(false);
         canvaCard.SetActive(false);
         canvaShipManager.SetActive(false);
+
+        deckReader = this.GetComponent<DeckReader>();
 
         draw = GameObject.Find("GameManager").GetComponent<Deck>();
         dogWay = GameObject.Find("DogManager").GetComponent<DogManager>();
@@ -167,7 +172,9 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    draw.Draw(true, false);
+                    DeckReader.Card card = deckReader.RandomCard();
+                    titleText.text = card.title;
+                    descriptionText.text = card.description;
                 }
             }
             else

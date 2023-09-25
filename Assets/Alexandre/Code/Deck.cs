@@ -11,17 +11,18 @@ public class Deck : MonoBehaviour
     [SerializeField] private string description;
     [SerializeField] private string title;
     public Text titleText, descriptionText;
-
+    DeckReader deckReader;
     PreparationShipManager myRessources;
     private void Awake()
     {
         myRessources= FindObjectOfType<PreparationShipManager>();
+        deckReader = this.GetComponent<DeckReader>();
     }
     void Update()
     {
         if (drawRessourceCard == true)
         {
-            
+            DeckReader.Card card = deckReader.RandomCard();
             myDraw = Random.Range(1,101);
             if (myDraw >= 1 && myDraw < 26)
             {
@@ -94,10 +95,8 @@ public class Deck : MonoBehaviour
                 description = "+ 1 arme";
                 myRessources.AddRessource(0, 0, 1);
             }
-            descriptionText.text = description;
-            titleText.text = title;
-            Debug.Log(title);
-            Debug.Log(description);
+            descriptionText.text = card.description;
+            titleText.text = card.title;
             drawRessourceCard = false;
         }
         if (drawPowerCard == true)
