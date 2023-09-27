@@ -166,27 +166,17 @@ public class GameManager : MonoBehaviour
             if (dogTurn == true)
             {
                 dogMove.move += currentD;
-                if (dogMove.move >= 9 || (dogWay.dogWay == "M" && dogMove.move >= 6))
+                if (dogMove.move <= 9 || (dogWay.dogWay == "M" && dogMove.move <= 6))
                 {
-                    draw.Draw(false, true);//(false, true) pour pouvoir et (
-                }
-                else
-                {
-                    DeckReader.Card card = deckReader.RandomCard();
-                    titleText.text = card.title;
-                    descriptionText.text = card.description;
+                    draw.Draw();
                 }
             }
             else
             {
                 catMove.move += currentD;
-                if (catMove.move >= 9 || (catWay.catWay == "M" && catMove.move >= 6))
+                if (catMove.move <= 9 || (catWay.catWay == "M" && catMove.move <= 6))
                 {
-                    draw.Draw(false, true);
-                }
-                else
-                {
-                    draw.Draw(true, false);
+                    draw.Draw();
                 }
             }
               

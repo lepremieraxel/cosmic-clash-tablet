@@ -9,13 +9,6 @@ public class DeckReader : MonoBehaviour
 {
     [SerializeField] string path = "Assets/Alexandre/Deck.csv";
     [SerializeField] int nbLines = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        string[] lines = File.ReadAllLines(path);
-        nbLines = lines.Length;
-        RandomCard();
-    }
 
     public class Card
     {
@@ -27,20 +20,17 @@ public class DeckReader : MonoBehaviour
 
     public Card RandomCard()
     {
-        int random = Random.Range(1, nbLines);
         string[] lines = File.ReadAllLines(path);
+        nbLines = lines.Length;
+        int random = Random.Range(1, nbLines);
         string[] choosenLine = lines[random].Split(';');
-        Card card = new Card();
-        card.id = choosenLine[0];
-        card.title = choosenLine[1];
-        card.description = choosenLine[2];
-        card.function = choosenLine[3];
+        Card card = new Card
+        {
+            id = choosenLine[0],
+            title = choosenLine[1],
+            description = choosenLine[2],
+            function = choosenLine[3]
+        };
         return card;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
