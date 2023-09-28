@@ -4677,8 +4677,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c583b1d94e4e714a897f23b9b493866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
-  title: 
   titleText: {fileID: 1474147727}
   descriptionText: {fileID: 1177472933}
 --- !u!114 &1463283012
