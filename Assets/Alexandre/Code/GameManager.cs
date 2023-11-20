@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
         }
         if (message == "Fire")
         {
-            D6();
+            // a revoir D6();
         }
         void D4()
         {
@@ -210,19 +210,8 @@ public class GameManager : MonoBehaviour
 
         }
 
-        void D6()
-        {
-            currentD = Random.Range(1, 7);
-            Debug.Log(currentD);
-            Choose(currentD);
-        }
-        void Choose(int nb)
-        {
-            if(nb == 1)
-            {
-
-            }
-        }
+       
+        
     }
 }
 
