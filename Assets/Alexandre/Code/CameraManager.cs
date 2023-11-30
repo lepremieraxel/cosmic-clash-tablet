@@ -17,24 +17,28 @@ public class CameraManager : MonoBehaviour
     }
     public void SwitchCam(string camera)
     {
-        if (camera == "DogTurnCam")
+        if (camera == "ChangeTurnCam")
         {
+            if (GameManager.dogTurn == true)
+            {
 
-            camDogTurn.SetActive(true);
-            camCatTurn.SetActive(false);
-            camDogShip.SetActive(false);
-            camCatShip.SetActive(false);
+                camDogTurn.SetActive(true);
+                camCatTurn.SetActive(false);
+                camDogShip.SetActive(false);
+                camCatShip.SetActive(false);
+            }
+            else if (GameManager.dogTurn == false)
+            {
+                camDogTurn.SetActive(false);
+                camCatTurn.SetActive(true);
+                camDogShip.SetActive(false);
+                camCatShip.SetActive(false);
+            }
         }
-        if (camera == "CatTurnCam")
-        {
-            camDogTurn.SetActive(false);
-            camCatTurn.SetActive(true);
-            camDogShip.SetActive(false);
-            camCatShip.SetActive(false);
-        }
+        
         if (camera == "DogShipCam")
         {
-            Debug.Log("CaMARCHE");
+        
             camDogTurn.SetActive(false);
             camCatTurn.SetActive(false);
             camDogShip.SetActive(true);

@@ -8,6 +8,7 @@ TagManager:
   - ShieldCube
   - IronCube
   - CoreCube
+  - Bullet
   layers:
   - Default
   - TransparentFX

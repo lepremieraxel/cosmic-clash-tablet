@@ -1,0 +1,21 @@
+id;title;description;function
+1;Carte 1;+ 1 fer;ADD-1-0-0
+2;Carte 2;+ 1 fer;ADD-1-0-0
+3;Carte 3;+ 1 fer;ADD-1-0-0
+4;Carte 4;+ 1 fer;ADD-1-0-0
+5;Carte 5;+ 1 bouclier;ADD-0-1-0
+6;Carte 6;+ 1 bouclier;ADD-0-1-0
+7;Carte 7;+ 1 bouclier;ADD-0-1-0
+8;Carte 8;+ 1 bouclier;ADD-0-1-0
+9;Carte 9;+ 1 arme;ADD-0-0-1
+10;Carte 10;+ 1 arme;ADD-0-0-1
+11;Carte 11;+ 1 arme;ADD-0-0-1
+12;Carte 12;+ 1 arme;ADD-0-0-1
+13;Carte 13;+ 2 fers;ADD-2-0-0
+14;Carte 14;+ 2 fers;ADD-2-0-0
+15;Carte 15;+ 2 boucliers;ADD-0-2-0
+16;Carte 16;+ 2 boucliers;ADD-0-2-0
+17;Carte 17;+ 2 armes;ADD-0-0-2
+18;Carte 18;+ 2 armes;ADD-0-0-2
+19;Carte 19;+ 1 fer & 1 bouclier;ADD-1-1-0
+20;Carte 20;+ 1 fer & 1 bouclier;ADD-1-1-0

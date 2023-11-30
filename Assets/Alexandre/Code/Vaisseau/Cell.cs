@@ -23,6 +23,7 @@ public class Cell : MonoBehaviour
         currentShieldBloc = GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
         currentGunBloc = GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
         currentCoreBloc = GameObject.Find("GameManager").GetComponent<PreparationShipManager>();
+        
     }
     private void OnMouseOver()
     {

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
     CameraManager cameraManager;
     PreparationShipManager currentIronBloc;
     PreparationShipManager currentShieldBloc;
     PreparationShipManager currentGunBloc;
     PreparationShipManager currentCoreBloc;
     public static bool dogTurn = true;
+    public static bool fight = false;
 
     CanvasManager canvasManager;
 
@@ -28,8 +30,8 @@ public class GameManager : MonoBehaviour
 
 
     private int turn;
-    
 
+    private FightManager fightManager;
     private void Awake()
     {
         
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour
         currentShieldBloc = this.GetComponent<PreparationShipManager>();
         currentGunBloc = this.GetComponent<PreparationShipManager>();
         currentCoreBloc = this.GetComponent<PreparationShipManager>();
+        fightManager = this.GetComponent<FightManager>();
 
         canvasManager.SwitchCanvas("canvasDebut");
     }
@@ -104,6 +107,7 @@ public class GameManager : MonoBehaviour
         if (message == "Ok")
         {
             
+            //simplifié dans le camera manager en fonction du tour
 
             if ((currentIronBloc.currentIron > 0 || currentGunBloc.currentGun > 0 || currentShieldBloc.currentShield > 0) && dogTurn == true)
             {
@@ -134,6 +138,10 @@ public class GameManager : MonoBehaviour
                     currentShieldBloc.currentShield = 1;
                     currentCoreBloc.currentCore = 1;
             }
+            else if(dogMove.move == 0 || catMove.move ==0)
+            {
+                canvasManager.SwitchCanvas("canvasDebut");
+            }
             else
             {
                 canvasManager.SwitchCanvas("canvasD4");
@@ -143,35 +151,38 @@ public class GameManager : MonoBehaviour
             if (dogTurn == true)
             {
                 dogTurn = false;
-                cameraManager.SwitchCam("CatTurnCam");
+                cameraManager.SwitchCam("ChangeTurnCam");
                 turn += 1;
             }
             else
             {
                 dogTurn = true;
-                cameraManager.SwitchCam("DogTurnCam");
+                cameraManager.SwitchCam("ChangeTurnCam");
             }
             
         }
-        if (message == "Fire")
+        if (message == "Restart")
         {
-            // a revoir D6();
+            canvasManager.SwitchCanvas("canvasDebut");
+            dogMove.Restart();
+            catMove.Restart();
+            cameraManager.SwitchCam("ChangeTurnCam");
         }
         void D4()
         {
             currentD = Random.Range(1, 5);
-            //Debug.Log(currentD);
+            
             if (dogTurn == true)
             {
                 dogMove.move += currentD;
                 if (dogMove.move >= 9 || (dogWay.dogWay == "M" && dogMove.move >= 6))
                 {
-                    draw.Draw(false, true);
+                    draw.Draw();
                     StartBattle("Dog");
                 }
                 else
                 {
-                    draw.Draw(true, false);
+                    draw.Draw();
                 }
             }
             else
@@ -179,12 +190,12 @@ public class GameManager : MonoBehaviour
                 catMove.move += currentD;
                 if (catMove.move >= 9 || (catWay.catWay == "M" && catMove.move >= 6))
                 {
-                    draw.Draw(false, true);
+                    draw.Draw();
                     StartBattle("Cat");
                 }
                 else
                 {
-                    draw.Draw(true, false);
+                    draw.Draw();
 
                 }
             }
@@ -192,27 +203,28 @@ public class GameManager : MonoBehaviour
            
 
         }
-        void StartBattle(string Attacker)
-        {
-            if (Attacker == "Cat")
-            {
-                cameraManager.SwitchCam("DogShipCam");
-                maxAttack = maxCatGun; //nb de tire= total de gun
-                canvasManager.SwitchCanvas("canvasFire");
-            }
-            else if (Attacker == "Dog")
-            {
-                cameraManager.SwitchCam("CatShipCam");
-                maxAttack = maxDogGun;
-                canvasManager.SwitchCanvas("canvasFire");
-
-            }
-
-        }
+        
 
        
         
     }
+    public void StartBattle(string Attacker)
+    {
+        if (Attacker == "Cat")
+        {
+            cameraManager.SwitchCam("DogShipCam");
+            maxAttack = maxCatGun; //nb de tire= total de gun
+            canvasManager.SwitchCanvas("canvasFire");
+            fightManager.StartFight(maxCatGun);
+        }
+        else if (Attacker == "Dog")
+        {
+            cameraManager.SwitchCam("CatShipCam");
+            maxAttack = maxDogGun;
+            canvasManager.SwitchCanvas("canvasFire");
+            fightManager.StartFight(maxDogGun);
+
+        }
+
+    }
 }
-
-

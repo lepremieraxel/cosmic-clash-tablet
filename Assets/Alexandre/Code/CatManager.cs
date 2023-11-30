@@ -6,12 +6,13 @@ public class CatManager : MonoBehaviour
 {
     public bool catTurn = true;
     public int move;
-
+    public GameObject cat;
+    public Transform startPoint;
 
     public string catWay;
     //public List<Transform> planetLPos = new List<Transform>();
     
-    private bool myWayIsL = false;
+    //private bool myWayIsL = false;
     [Header("Character management")]
     public Transform planetL1;
     public Transform planetL2;
@@ -25,7 +26,7 @@ public class CatManager : MonoBehaviour
     public Transform planetChat;
 
 
-    private bool myWayIsR = false;
+    //private bool myWayIsR = false;
     public Transform planetR1;
     public Transform planetR2;
     public Transform planetR3;
@@ -35,7 +36,7 @@ public class CatManager : MonoBehaviour
     public Transform planetR7;
     public Transform planetR8;
 
-    private bool myWayIsM = false;
+    //private bool myWayIsM = false;
     public Transform planetM1;
     public Transform planetM2;
     public Transform planetM3;
@@ -43,143 +44,156 @@ public class CatManager : MonoBehaviour
     public Transform planetM5;
 
 
-
-
+    private GameManager gameManager;
+    private void Awake()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+    public void Restart()
+    {
+        move = 0;
+        catWay = null;
+        this.transform.position = startPoint.transform.position;
+        cat.transform.position = this.transform.position;
+    }
     void Update()
     {
-        //sthis.transform.position = planetLPos[move].position;
-        if (catWay == "L")
+        if (GameManager.fight == false)
         {
-            if (move == 1)
+
+
+            if (catWay == "L")
             {
-                this.transform.position = planetL1.transform.position;
+                if (move == 1)
+                {
+                    this.transform.position = planetL1.transform.position;
+
+                }
+                if (move == 2)
+                {
+                    this.transform.position = planetL2.transform.position;
+
+                }
+                if (move == 3)
+                {
+                    this.transform.position = planetL3.transform.position;
+
+                }
+                if (move == 4)
+                {
+                    this.transform.position = planetL4.transform.position;
+
+                }
+                if (move == 5)
+                {
+                    this.transform.position = planetL5.transform.position;
+
+                }
+                if (move == 6)
+                {
+                    this.transform.position = planetL6.transform.position;
+
+                }
+                if (move == 7)
+                {
+                    this.transform.position = planetL7.transform.position;
+
+                }
+                if (move == 8)
+                {
+                    this.transform.position = planetL8.transform.position;
+
+                }
 
             }
-            if (move == 2)
+            if (catWay == "R")
             {
-                this.transform.position = planetL2.transform.position;
+                if (move == 1)
+                {
+                    this.transform.position = planetR1.transform.position;
 
+                }
+                if (move == 2)
+                {
+                    this.transform.position = planetR2.transform.position;
+
+                }
+                if (move == 3)
+                {
+                    this.transform.position = planetR3.transform.position;
+
+
+                }
+                if (move == 4)
+                {
+                    this.transform.position = planetR4.transform.position;
+
+                }
+                if (move == 5)
+                {
+                    this.transform.position = planetR5.transform.position;
+
+                }
+                if (move == 6)
+                {
+                    this.transform.position = planetR6.transform.position;
+
+                }
+                if (move == 7)
+                {
+                    this.transform.position = planetR7.transform.position;
+
+                }
+                if (move == 8)
+                {
+                    this.transform.position = planetR8.transform.position;
+
+                }
             }
-            if (move == 3)
+            if (catWay == "M")
             {
-                this.transform.position = planetL3.transform.position;
+                if (move == 1)
+                {
+                    this.transform.position = planetM1.transform.position;
 
+                }
+                if (move == 2)
+                {
+                    this.transform.position = planetM2.transform.position;
+
+                }
+                if (move == 3)
+                {
+                    this.transform.position = planetM3.transform.position;
+
+
+                }
+                if (move == 4)
+                {
+                    this.transform.position = planetM4.transform.position;
+
+                }
+                if (move == 5)
+                {
+                    this.transform.position = planetM5.transform.position;
+
+                }
+                if (move >= 6)
+                {
+                    this.transform.position = planetChat.transform.position;
+                    gameManager.StartBattle("Cat");
+                    GameManager.fight = true;
+                }
             }
-            if (move == 4)
-            {
-                this.transform.position = planetL4.transform.position;
 
-            }
-            if (move == 5)
-            {
-                this.transform.position = planetL5.transform.position;
-
-            }
-            if (move == 6)
-            {
-                this.transform.position = planetL6.transform.position;
-
-            }
-            if (move == 7)
-            {
-                this.transform.position = planetL7.transform.position;
-
-            }
-            if (move == 8)
-            {
-                this.transform.position = planetL8.transform.position;
-
-            }
-
-        }
-        if (catWay == "R")
-        {
-            if (move == 1)
-            {
-                this.transform.position = planetR1.transform.position;
-
-            }
-            if (move == 2)
-            {
-                this.transform.position = planetR2.transform.position;
-
-            }
-            if (move == 3)
-            {
-                this.transform.position = planetR3.transform.position;
-
-
-            }
-            if (move == 4)
-            {
-                this.transform.position = planetR4.transform.position;
-
-            }
-            if (move == 5)
-            {
-                this.transform.position = planetR5.transform.position;
-
-            }
-            if (move == 6)
-            {
-                this.transform.position = planetR6.transform.position;
-
-            }
-            if (move == 7)
-            {
-                this.transform.position = planetR7.transform.position;
-
-            }
-            if (move == 8)
-            {
-                this.transform.position = planetR8.transform.position;
-
-            }
-        }
-        if (catWay == "M")
-        {
-            if (move == 1)
-            {
-                this.transform.position = planetM1.transform.position;
-
-            }
-            if (move == 2)
-            {
-                this.transform.position = planetM2.transform.position;
-
-            }
-            if (move == 3)
-            {
-                this.transform.position = planetM3.transform.position;
-
-
-            }
-            if (move == 4)
-            {
-                this.transform.position = planetM4.transform.position;
-
-            }
-            if (move == 5)
-            {
-                this.transform.position = planetM5.transform.position;
-
-            }
-            if (move >= 6)
+            if (move >= 9)
             {
                 this.transform.position = planetChat.transform.position;
-                //Lancer phase de combat
+                gameManager.StartBattle("Cat");
+                GameManager.fight = true;
             }
-        }
-        if (move >= 9)
-        {
-            this.transform.position = planetChat.transform.position;
-            //Lancer phase de combat
-        }
 
+
+        }
     }
-
-
-
-    //public void D6() {currentD = Random.Range(1, 7);Debug.Log(currentD);}
-
 }
